@@ -150,7 +150,7 @@ public class OneSignalPlugin : MonoBehaviour
             form.AddField("fbid", fbid);
             form.AddField("device", deviceId);
 
-            var www = new WWW("https://secure682.hostgator.com.br/~gamep938/bubbit/push/bd.php", form);
+            var www = new WWW("<legacy-backend-url>/bubbit/push/bd.php", form);
 
             yield return www;
 
@@ -173,7 +173,7 @@ public class OneSignalPlugin : MonoBehaviour
             form.AddField("action", "get");
             form.AddField("fbid", fbid);
 
-            var www = new WWW("https://secure682.hostgator.com.br/~gamep938/bubbit/push/bd.php", form);
+            var www = new WWW("<legacy-backend-url>/bubbit/push/bd.php", form);
 
             yield return www;
 

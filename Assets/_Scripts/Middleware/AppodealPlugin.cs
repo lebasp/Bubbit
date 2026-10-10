@@ -179,7 +179,7 @@ public class AppodealPlugin : MonoBehaviour
         var form = new WWWForm();
         form.AddField("action", "getservertime");
 
-        var www = new WWW("https://secure682.hostgator.com.br/~gamep938/bubbit/time.php", form);
+        var www = new WWW("<legacy-backend-url>/bubbit/time.php", form);
 
         yield return www;
 
