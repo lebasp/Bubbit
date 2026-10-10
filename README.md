@@ -8,7 +8,7 @@
 
 ## Play it
 
-▶️ **[Play Bubbit in your browser](WEBGL_LINK_HERE)**
+▶️ **[Play Bubbit in your browser](https://lebasp.github.io/bubbit-web/)**
 
 ---
 

@@ -267,7 +267,9 @@ public class CircleSpawner : MonoBehaviour
 		if(m_circles.Contains(circle))
 			m_circles.Remove(circle);
 
+        // A circle only belongs to one pool; the other call is a no-op
         m_circlePool.DeactiveFromPool(circle);
+        m_deathCirclePool.DeactiveFromPool(circle);
 	}
 
     public void OnDestroy()
