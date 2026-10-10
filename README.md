@@ -98,7 +98,7 @@ flowchart TB
 | **Lifetime-safe callbacks** | `DisposableAction` (`this.addAction(...)`) ties an async callback to the GameObject that requested it. | A late SDK or network response can't call into a destroyed object. |
 | **Pause-aware timing** | Timed systems (spawner, difficulty, timer, power-ups) run in coroutines and listen to `OnGamePausedEvent`. | Pausing freezes every system consistently. |
 | **Object pooling** | Generic `Pool<T>` for bubbles, background bubbles, floating score text and leaderboard cards. | Avoids GC spikes on mobile. |
-| **Save system** | All persistent data goes through `SecureData`, which encrypts values before writing them to PlayerPrefs. Every key is declared once in `SaveKeys`. | Save data can't be edited by hand on the device, and there are no scattered string keys. |
+| **Save system** | All persistent data goes through `SecureData`, which encrypts values before writing them to PlayerPrefs. Its passphrase comes from a git-ignored config file. Every key is declared once in `SaveKeys`. | Save data can't be edited by hand on the device, and there are no scattered string keys. |
 | **Localization system** | Each language implements `ILanguage` as a key→text dictionary (English and Brazilian Portuguese). Code asks `Localization.CurrentLanguage.GetString(key)`; a `Localize` component on UI texts refreshes itself through the `onLanguageChanged` event. | Adding a language is one new class, and switching language updates the whole UI at runtime. |
 
 ### Folder map
@@ -130,12 +130,12 @@ Assets/_Scripts
 - **Premium conversion:** removed ads, real-money IAP and rewarded video.
 - Switched off every dead third-party SDK (Appodeal, Facebook, OneSignal, App42, Google Play Games, Everyplay, NativeShare) behind its existing adapter. Each one is marked `//[MIGRATION] TODO`.
 - Blanked the hardcoded SDK keys in the scripts. This repository starts with fresh history.
+- Moved the `SecureData` passphrase out of the source code into a git-ignored config file. The passphrase visible in early commits was temporary and will be replaced in the published version.
 
 **Next**
 - Typed item IDs (`enum`) and a data-driven cosmetics catalog (`ScriptableObject`) to replace string IDs and `if` chains.
 - Delete the stubbed SDK folders and replace the legacy leaderboard with a modern backend or platform services.
 - Unit tests for the pure-logic classes (`Inventory`, scoring, difficulty curve).
-- Remove the remaining credentials (SDK settings assets, the `SecureData` passphrase).
 - Ship back to Google Play and the App Store as a premium title.
 
 ---
@@ -143,8 +143,9 @@ Assets/_Scripts
 ## Running it
 
 1. Open the project in **Unity 6000.5** or newer.
-2. Open `Assets/Scene/preload.unity`, or just press Play from any scene: `PlayFromPreload` redirects it.
-3. Build targets: Android, iOS and WebGL.
+2. Create the save config: copy `Config/SecureDataConfig.example.json` to `Assets/Resources/SecureDataConfig.json` and set your own passphrase. The file is git-ignored. Without it the game still runs, using a development-only passphrase, and logs a warning explaining this step.
+3. Open `Assets/Scene/preload.unity`, or just press Play from any scene: `PlayFromPreload` redirects it.
+4. Build targets: Android, iOS and WebGL.
 
 ---
 
