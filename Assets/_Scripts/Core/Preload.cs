@@ -13,7 +13,7 @@ public class Preload : MonoBehaviour
 	[SerializeField]
 	AudioSource m_mainAudioSource;
 
-	void Start()
+	IEnumerator Start()
     {
         m_transitionEffect.InstantBlackout();
 
@@ -29,7 +29,16 @@ public class Preload : MonoBehaviour
             m_transitionEffect.Dismiss(null);
         }
         else
+        {
+            // On WebGL the screen has no real size during the first frames. Loading
+            // the menu then builds its texts with a near-zero canvas scale, which
+            // corrupts the dynamic font glyphs and leaves the labels invisible.
+            while (Screen.width <= 1 || Screen.height <= 1)
+                yield return null;
+            yield return null;
+
             m_languageMenu.SwitchLanguage(curLanguage);
+        }
 
 		//(Application.platform == RuntimePlatform.Android)
     }

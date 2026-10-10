@@ -1,6 +1,6 @@
 # Bubbit
 
-> A fast, physics-driven arcade puzzle game for mobile. I made it solo: code, game design, art and sound. Now it's being revived in Unity 6.
+> A fast, physics-driven arcade puzzle game for mobile. I made it solo: code, game design and art. Now it's being revived in Unity 6.
 
 ![Unity](https://img.shields.io/badge/Unity-6000.5-black?logo=unity) ![C#](https://img.shields.io/badge/C%23-.NET-512BD4?logo=csharp) ![Platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20WebGL-blue) ![Status](https://img.shields.io/badge/status-revival%20in%20progress-orange)
 
@@ -37,7 +37,7 @@ Coins are earned at the end of every match. They are spent on cosmetics (10 back
 
 | When | What happened |
 |---|---|
-| **2015 to 2016** | I designed and built Bubbit **entirely on my own**: game design, all C# code, art, UI, sound and music. It was released on **Google Play** and the **App Store**. |
+| **2015 to 2016** | I designed and built Bubbit **entirely on my own**: game design, all C# code, art and UI. It was released on **Google Play** and the **App Store**. |
 | **2016 to 2017** | Live updates (Unity 5.5): a cosmetics store, Game Center and Google Play achievements and leaderboards, Facebook friends' scores, push notifications, a tutorial, and a new main menu. |
 | **2018** | I upgraded the project to Unity 2018.2 just before joining the industry full time. That upgrade was never finished. |
 | **2024** | The game was **removed from the stores**. The ad, IAP and backend SDKs it depended on had become obsolete. |
@@ -150,6 +150,6 @@ Assets/_Scripts
 
 ## Credits
 
-**Leandro Serafim**: game design, programming, art, UI, sound and music.
+**Leandro Serafim**: game design, programming, art and UI.
 
 Third-party: [DOTween](http://dotween.demigiant.com/) by Demigiant, plus the pixel fonts in `Assets/Fonts`, which belong to their respective authors.
