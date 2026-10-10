@@ -6,7 +6,7 @@ public class Pause : MonoBehaviour {
 
     #region STATICS
     GameManager m_gameManager { get { return GameManager.GetInstance(); } }
-    TransitionEffect m_transitionEffect { get { return TransitionEffect.GeInstance(); } }
+    TransitionEffect m_transitionEffect { get { return TransitionEffect.GetInstance(); } }
     #endregion
 
     [SerializeField]

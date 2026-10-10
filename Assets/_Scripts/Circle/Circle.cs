@@ -9,7 +9,7 @@ public class Circle : MonoBehaviour
     protected ConnectionManager m_connectionManager {get { return ConnectionManager.GetInstance(); } }
 	CircleSpawner m_circleSpawner {get { return CircleSpawner.GetInstance(); } }
 	CircleCollision m_circleCollision {get { return CircleCollision.GetInstance(); } }
-    DifficultyManager m_difficultManager { get { return DifficultyManager.GetInstance(); } }
+    DifficultyManager m_difficultyManager { get { return DifficultyManager.GetInstance(); } }
     GameStats m_gameStats { get { return GameStats.GetInstance(); } }
     #endregion
 
@@ -28,8 +28,8 @@ public class Circle : MonoBehaviour
 	public delegate void onPointsChanged(int points);
 	public event onPointsChanged OnPointsChanged;
 
-	public delegate void onColision();
-	public event onColision OnColision;
+	public delegate void onCollision();
+	public event onCollision OnCollision;
 
     public delegate void onPointsDoubledStarted();
     public event onPointsDoubledStarted OnPointsDoubledStarted;
@@ -87,7 +87,7 @@ public class Circle : MonoBehaviour
 	{
 		get 
 		{
-			var finalSpeed = ((m_speed + (Points / 20f)) * m_gameManager.SpeedModifier) * m_difficultManager.OverallGameSpeed;
+			var finalSpeed = ((m_speed + (Points / 20f)) * m_gameManager.SpeedModifier) * m_difficultyManager.OverallGameSpeed;
 
 			var slowDown = State == state.Locked || State == state.Controlling;
 
@@ -272,7 +272,7 @@ public class Circle : MonoBehaviour
 
 			if(circle.State == Circle.state.Free)
 			{
-				if(OnColision != null) OnColision();
+				if(OnCollision != null) OnCollision();
 
 				m_circleCollision.CollideCircles(this, circle);
 			}
@@ -288,7 +288,7 @@ public class Circle : MonoBehaviour
             FloatingScoreController.GetInstance().ShowPoints(m_canvasSettings.Convert(Position), Points);
         }
 
-        UserPoweUp();
+        UsePowerUp();
         
         KillCircle();
     }
@@ -321,7 +321,7 @@ public class Circle : MonoBehaviour
 		m_powerUp.SetParent(m_transform);	
 	}
 
-	public void UserPoweUp()
+	public void UsePowerUp()
 	{
 		if (m_powerUp) 
 		{

@@ -17381,7 +17381,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1550799285}
         m_TargetAssemblyTypeName: 
-        m_MethodName: Hidetutorial
+        m_MethodName: HideTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28178,7 +28178,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1550799285}
         m_TargetAssemblyTypeName: 
-        m_MethodName: Hidetutorial
+        m_MethodName: HideTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
 	#region STATICS
 	CircleSpawner m_circleSpawner {get { return CircleSpawner.GetInstance(); } }
     GameStats m_gameStats { get { return GameStats.GetInstance(); } }
-    DifficultyManager m_difficultManager { get { return DifficultyManager.GetInstance(); } }
+    DifficultyManager m_difficultyManager { get { return DifficultyManager.GetInstance(); } }
     BackgroundController m_backgroundController { get { return BackgroundController.GetInstance(); } }
 	HealthManager m_healthManager { get { return HealthManager.GetInstance (); } }
     SoundManager m_soundManager { get { return SoundManager.GetInstance(); } }
     CanvasSettings m_canvasSettings {get { return CanvasSettings.GetInstance(); } }
     LeaderboardController m_leaderboardController { get { return LeaderboardController.GetInstance(); } }
-    TransitionEffect m_transitionEffect { get { return TransitionEffect.GeInstance(); } }
+    TransitionEffect m_transitionEffect { get { return TransitionEffect.GetInstance(); } }
     #endregion
 
     public enum kind
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     Pause m_pause;
 
     [SerializeField]
-    EndGame m_endGamep;
+    EndGame m_endGame;
 
     [SerializeField]
     PopupAskContinue m_askContinue;
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
 		yield return null;
 
-        m_endGamep.HardHideGame();
+        m_endGame.HardHideGame();
 
         m_transitionEffect.Dismiss();
 
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
 
 		m_healthManager.ResetLives ();
 
-        m_difficultManager.Begin();
+        m_difficultyManager.Begin();
 
         PauseGame(false);
 
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
 
         m_circleSpawner.StopSpawn();
 
-        m_difficultManager.End();
+        m_difficultyManager.End();
 
         if (Kind == kind.Timed)
             m_gametimer.StopTimer();
@@ -173,18 +173,11 @@ public class GameManager : MonoBehaviour
             OnGameEndedEvent();
     }
 
+    // Premium version: reviving is only paid with coins (no rewarded ads), so the
+    // offer only shows up when the player can afford the next revive
     bool CanAskContinue()
     {
-        if (Inventory.GetInstance().ItemBalance(Inventory.ID_COINS) >= 250)
-            return true;
-
-        if (m_timesAsked >= 1)
-            return true;
-
-        if(m_gameStats.Score >= 100)
-            return true;
-
-        return false;
+        return Inventory.GetInstance().ItemBalance(Inventory.ID_COINS) >= PopupAskContinue.RevivePrice(m_timesAsked + 1);
     }
 
     public void TimeEnded()
@@ -245,7 +238,7 @@ public class GameManager : MonoBehaviour
             { "gamekind", m_gamekind.ToString() },
             { "score", m_gameStats.Score },
             { "score_range", m_gameStats.ScoreRange() },
-            { "level", m_difficultManager.CurrentLevel.ToString() },
+            { "level", m_difficultyManager.CurrentLevel.ToString() },
         };
 
         UnityEngine.Analytics.Analytics.CustomEvent("GameOver",metadata);
@@ -254,7 +247,7 @@ public class GameManager : MonoBehaviour
        
         StopGame();       
 
-        m_endGamep.ShowEndGame();
+        m_endGame.ShowEndGame();
     }
 
     #if UNITY_EDITOR
@@ -338,10 +331,10 @@ public class GameManager : MonoBehaviour
             circles[i].KillCircle();
         }
 
-        //powerup circle must be the last one to explode, so the pwoer up effect doenst affect the ones to be exploded
+        //powerup circle must be the last one to explode, so the power up effect doesn't affect the ones to be exploded
         if (powerUpCircle)
         {
-            powerUpCircle.UserPoweUp();
+            powerUpCircle.UsePowerUp();
             powerUpCircle.KillCircle();
         }
         

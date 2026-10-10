@@ -22339,7 +22339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameplayGroup: {fileID: 1731934873}
   m_pause: {fileID: 1206463177}
-  m_endGamep: {fileID: 1206463176}
+  m_endGame: {fileID: 1206463176}
   m_askContinue: {fileID: 1928552625}
   m_explosionSource: {fileID: 1206463174}
   m_gametimer: {fileID: 1206463178}

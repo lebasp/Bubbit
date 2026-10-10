@@ -14,7 +14,7 @@ public class EndGame : MonoBehaviour
     FacebookPlugin m_facebookPlugin { get { return FacebookPlugin.GetInstance(); } }
     OneSignalPlugin m_oneSignalPlugin { get { return OneSignalPlugin.GetInstance(); } }
     LeaderboardController m_leaderboardController {get { return LeaderboardController.GetInstance(); } }
-    TransitionEffect m_transitionEffect { get { return TransitionEffect.GeInstance(); } }
+    TransitionEffect m_transitionEffect { get { return TransitionEffect.GetInstance(); } }
     GoogleGamePlugin m_googleGamePlugin { get { return  GoogleGamePlugin.GetInstance(); } }
     #endregion
 
@@ -93,7 +93,7 @@ public class EndGame : MonoBehaviour
 
     public void ShowEndGame()
     {
-        CheckAchievments();
+        CheckAchievements();
 
         m_numberOfRetries++;
 
@@ -140,7 +140,7 @@ public class EndGame : MonoBehaviour
 
         if (m_numberOfRetries >= 2)
         {           
-            AppodealPlugin.GetInstance().ShowInterstital(this.addAction(() => m_numberOfRetries = 0));         
+            AppodealPlugin.GetInstance().ShowInterstitial(this.addAction(() => m_numberOfRetries = 0));         
         }
 
         AppodealPlugin.GetInstance().ShowBanner(false);
@@ -149,7 +149,7 @@ public class EndGame : MonoBehaviour
 
     }
 
-    void CheckAchievments()
+    void CheckAchievements()
     {
         var score = m_gameStats.Score;
 

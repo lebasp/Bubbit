@@ -10,14 +10,14 @@ public class Pool<T> where T : MonoBehaviour
 
     bool m_initialized = false;
 
-    public static Pool<T> CreatePool(List<T> preInstanciated, GameObject prefab, Transform parent)
+    public static Pool<T> CreatePool(List<T> preInstantiated, GameObject prefab, Transform parent)
     {
         var pool = new Pool<T>();
 
         pool.m_parent = parent;
         pool.m_prefab = prefab;
 
-        foreach (var obj in preInstanciated)
+        foreach (var obj in preInstantiated)
         {
             pool.m_objects[obj] = false;
             obj.gameObject.SetActive(false);
@@ -57,7 +57,7 @@ public class Pool<T> where T : MonoBehaviour
         return obj;
     }
 
-    public void DeactiveFromPool(T obj)
+    public void DeactivateFromPool(T obj)
     {
         if (!m_initialized)
         {

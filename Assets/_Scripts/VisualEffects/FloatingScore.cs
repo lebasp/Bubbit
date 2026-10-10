@@ -60,7 +60,7 @@ public class FloatingScore : MonoBehaviour {
                     m_textMesh.color = m_defaultColor;
 
                 if(m_pool != null)
-                    m_pool.DeactiveFromPool(this);
+                    m_pool.DeactivateFromPool(this);
             });
 
     }

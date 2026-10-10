@@ -8,7 +8,7 @@ public class CircleSpawner : MonoBehaviour
 {
 	#region STATICS
     GameManager m_gameManager {  get { return GameManager.GetInstance(); } }
-    DifficultyManager m_difficultManager {  get { return DifficultyManager.GetInstance(); } }
+    DifficultyManager m_difficultyManager {  get { return DifficultyManager.GetInstance(); } }
     GameStats m_gameStats { get { return GameStats.GetInstance(); } }
 	#endregion
 
@@ -148,11 +148,11 @@ public class CircleSpawner : MonoBehaviour
 	{
 		yield return null;
 
-		var nexSpawnTime = new TimeSpan (0);
+		var nextSpawnTime = new TimeSpan (0);
 		var timeNow = new TimeSpan(0);
 
-		var powerUpStart =  new TimeSpan(0,0,0, m_difficultManager.SecondsBeforeStartingPowerUps);
-		var deathCircleStart =  new TimeSpan(0,0,0, m_difficultManager.SecondsBeforeStartingDeathCircles);
+		var powerUpStart =  new TimeSpan(0,0,0, m_difficultyManager.SecondsBeforeStartingPowerUps);
+		var deathCircleStart =  new TimeSpan(0,0,0, m_difficultyManager.SecondsBeforeStartingDeathCircles);
 
         int prevPowerUp = -1;
 
@@ -163,10 +163,10 @@ public class CircleSpawner : MonoBehaviour
 
             if (!Paused)
             {				
-                var deltaTime = new TimeSpan(0, 0, 0, 0, (int)((1000 * Time.fixedDeltaTime) * (m_difficultManager.OverallGameSpeed * m_gameManager.SpeedModifier)));
+                var deltaTime = new TimeSpan(0, 0, 0, 0, (int)((1000 * Time.fixedDeltaTime) * (m_difficultyManager.OverallGameSpeed * m_gameManager.SpeedModifier)));
                 timeNow = timeNow.Add(deltaTime);
 
-                if (timeNow >= nexSpawnTime)
+                if (timeNow >= nextSpawnTime)
                 {
                     float x = 0;
                     do
@@ -182,8 +182,8 @@ public class CircleSpawner : MonoBehaviour
 
                     var doublePoints = CheckIfPowerUpActive(typeof(DoublePoints));
 
-                    var maySpawnDeathCircle = (timeNow >= deathCircleStart) && (Random.Range(0, 100) <= m_difficultManager.ChanceOfDeathCircle);
-                    var maySpawnPoweUp = (timeNow >= powerUpStart) && (Random.Range(0, 100) <= m_difficultManager.ChanceOfPowerUp(m_gameManager.Kind)) && m_activePowerUp == null;
+                    var maySpawnDeathCircle = (timeNow >= deathCircleStart) && (Random.Range(0, 100) <= m_difficultyManager.ChanceOfDeathCircle);
+                    var maySpawnPowerUp = (timeNow >= powerUpStart) && (Random.Range(0, 100) <= m_difficultyManager.ChanceOfPowerUp(m_gameManager.Kind)) && m_activePowerUp == null;
 
                     if (m_specialPowerUpNext)
                     {
@@ -192,7 +192,7 @@ public class CircleSpawner : MonoBehaviour
                     }
                     else if (maySpawnDeathCircle)
                         SpawnDeathCircleAtLocation(spawnPosition);
-                    else if (maySpawnPoweUp)
+                    else if (maySpawnPowerUp)
                     {
                         var powerUpIndex = -1;
                         do
@@ -209,7 +209,7 @@ public class CircleSpawner : MonoBehaviour
                     else
                         SpawnCircleAtLocation(spawnPosition, doublePoints ? 2 : 1);			
 
-                    nexSpawnTime = timeNow.Add(new TimeSpan(0, 0, 0, 0, m_difficultManager.MilliecondsBetweenSpawns));
+                    nextSpawnTime = timeNow.Add(new TimeSpan(0, 0, 0, 0, m_difficultyManager.MillisecondsBetweenSpawns));
                 }	
 
             }
@@ -268,8 +268,8 @@ public class CircleSpawner : MonoBehaviour
 			m_circles.Remove(circle);
 
         // A circle only belongs to one pool; the other call is a no-op
-        m_circlePool.DeactiveFromPool(circle);
-        m_deathCirclePool.DeactiveFromPool(circle);
+        m_circlePool.DeactivateFromPool(circle);
+        m_deathCirclePool.DeactivateFromPool(circle);
 	}
 
     public void OnDestroy()

@@ -48,7 +48,7 @@ public class SimpleCircleSpawner : MonoBehaviour
 	{
 		yield return null;
 
-		var nexSpawnTime = new TimeSpan (0);
+		var nextSpawnTime = new TimeSpan (0);
 		var timeNow = new TimeSpan (0);
 
 		float previousX = 0;
@@ -61,7 +61,7 @@ public class SimpleCircleSpawner : MonoBehaviour
                 var deltaTime = new TimeSpan(0, 0, 0, 0, (int)((1000 * Time.fixedDeltaTime)));
                 timeNow = timeNow.Add(deltaTime);
 
-                if (timeNow >= nexSpawnTime)
+                if (timeNow >= nextSpawnTime)
                 {
                     float x = 0;
 
@@ -78,7 +78,7 @@ public class SimpleCircleSpawner : MonoBehaviour
 
                     SpawnCircleAtLocation(spawnPosition);			
                       
-                    nexSpawnTime = timeNow.Add(new TimeSpan(0, 0, 0, 0, m_spawnMS));
+                    nextSpawnTime = timeNow.Add(new TimeSpan(0, 0, 0, 0, m_spawnMS));
                 }   
             }
 
@@ -97,7 +97,7 @@ public class SimpleCircleSpawner : MonoBehaviour
 
     public void Remove(SimpleCircle circle)
     {
-        m_circlePool.DeactiveFromPool(circle);
+        m_circlePool.DeactivateFromPool(circle);
 
         m_backgroundController.RemoveActiveCircle(circle);
     }

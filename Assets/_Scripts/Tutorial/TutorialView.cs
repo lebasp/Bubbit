@@ -40,7 +40,7 @@ public class TutorialView : MonoBehaviour
         EnableStepIndex(0);
     }
 
-    public void Hidetutorial()
+    public void HideTutorial()
     {
         m_tutorialGroup.SetActive(false);
     }

@@ -4,7 +4,7 @@ using System.Collections;
 public class Preload : MonoBehaviour
 {
     #region STATICS
-    TransitionEffect m_transitionEffect { get { return TransitionEffect.GeInstance(); } }
+    TransitionEffect m_transitionEffect { get { return TransitionEffect.GetInstance(); } }
     #endregion
 
     [SerializeField]

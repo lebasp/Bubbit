@@ -12,7 +12,7 @@ public class BlackHole : PowerUp
 
     float m_speed = 2;
 
-    List<Circle> m_circlesRemaningInside = new List<Circle>();
+    List<Circle> m_circlesRemainingInside = new List<Circle>();
 
     public override void PickUp ()
 	{
@@ -49,7 +49,7 @@ public class BlackHole : PowerUp
                 var deltaTime = new TimeSpan(0, 0, 0, 0, (int)(1000 * Time.fixedDeltaTime));
                 timeNow = timeNow.Add(deltaTime);
 
-                m_circlesRemaningInside.Clear();
+                m_circlesRemainingInside.Clear();
 
                 for (int i = circles.Count - 1; i >= 0; i--)
                 {
@@ -72,8 +72,8 @@ public class BlackHole : PowerUp
                         {
                             circles[i].SetPosition(m_transform.position);
 
-                            if(!m_circlesRemaningInside.Contains(circles[i]))
-                                m_circlesRemaningInside.Add(circles[i]);
+                            if(!m_circlesRemainingInside.Contains(circles[i]))
+                                m_circlesRemainingInside.Add(circles[i]);
                         }
                     }
                 }
@@ -92,17 +92,17 @@ public class BlackHole : PowerUp
 			
         } while (timeNow < endtime);
 
-        for (int i = m_circlesRemaningInside.Count -1; i >= 0; i--) 
+        for (int i = m_circlesRemainingInside.Count -1; i >= 0; i--) 
         {
-            if(m_circlesRemaningInside[i] != null)
+            if(m_circlesRemainingInside[i] != null)
             {
-                m_gameStats.AddScore(m_circlesRemaningInside[i].Points);
-                m_circlesRemaningInside[i].UserPoweUp();
-                m_circlesRemaningInside[i].KillCircle();
+                m_gameStats.AddScore(m_circlesRemainingInside[i].Points);
+                m_circlesRemainingInside[i].UsePowerUp();
+                m_circlesRemainingInside[i].KillCircle();
             }
         }
 
-        m_circlesRemaningInside.Clear();
+        m_circlesRemainingInside.Clear();
 
         ResetEffect();
 

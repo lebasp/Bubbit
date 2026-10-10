@@ -36,7 +36,7 @@ public class GameTimer : MonoBehaviour
     public void  StopTimer()
     {
         StopAllCoroutines();       
-        StopPusling();
+        StopPulsing();
     }
 
     void Pause(bool pause)
@@ -53,7 +53,7 @@ public class GameTimer : MonoBehaviour
         m_timeUp += new TimeSpan(0,0, seconds);
 
         if (m_timeUp.TotalSeconds > m_timeToPulse)
-            StopPusling();
+            StopPulsing();
     }
 
     public void RestartTimer()
@@ -93,7 +93,7 @@ public class GameTimer : MonoBehaviour
         m_timePulsing.Pulse();
     }
 
-    void StopPusling()
+    void StopPulsing()
     {
         timerText.color = Color.white;
         m_timePulsing.StopPulse();

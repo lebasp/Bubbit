@@ -125,7 +125,7 @@ public class LeaderboardController
                 found.Value = newPlayerScore;
             else
             {
-                if (worldLb.Count < m_app42Plugin.WOLRD_LIMIT)
+                if (worldLb.Count < m_app42Plugin.WORLD_LIMIT)
                     worldLb.Add(m_leaderboards[gameKind].PlayerScore);
                 else if (newPlayerScore >= worldLb[worldLb.Count - 1].Value)
                 {
@@ -176,7 +176,7 @@ public class LeaderboardController
 
         public static void Create(GameManager.kind gameKind, Leaderboard leaderboard, Action<Leaderboard> onFinishedLeaderboard)
         {
-            var go = new GameObject("__ledaerboard_runner");
+            var go = new GameObject("__leaderboard_runner");
             var runner = go.AddComponent<LeaderboardRunner>();
 
             runner.StartCoroutine(runner.LoadLbs(gameKind, leaderboard, onFinishedLeaderboard));
@@ -199,7 +199,7 @@ public class LeaderboardController
 
             var routine2 = StartCoroutine(GetWorldLeaderboard(gameKind, (worldLB) =>
                     {
-                        if (worldLB.Count < m_app42Plugin.WOLRD_LIMIT && !worldLB.Exists((score) => score.UserName.Equals(playerScore.UserName)))
+                        if (worldLB.Count < m_app42Plugin.WORLD_LIMIT && !worldLB.Exists((score) => score.UserName.Equals(playerScore.UserName)))
                             worldLB.Add(playerScore);
 
                         leaderboard.WorldLeaderboard = worldLB;

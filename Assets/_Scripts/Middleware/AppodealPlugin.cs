@@ -20,7 +20,7 @@ public class AppodealPlugin : MonoBehaviour
 
     //[MIGRATION] TODO: NEWWER VERSION
     /*
-    Interstital m_interstital = new Interstital();
+    Interstitial m_interstitial = new Interstitial();
     RewardVideo m_rewardVideo = new RewardVideo();
 
     UserSettings m_userSettings;
@@ -58,7 +58,7 @@ public class AppodealPlugin : MonoBehaviour
             Appodeal.setAutoCache(Appodeal.INTERSTITIAL, false);
             Appodeal.setAutoCache(Appodeal.BANNER, !NoAds);
             Appodeal.setAutoCache(Appodeal.REWARDED_VIDEO, false);
-            Appodeal.setInterstitialCallbacks(m_interstital);
+            Appodeal.setInterstitialCallbacks(m_interstitial);
             Appodeal.setRewardedVideoCallbacks(m_rewardVideo);
 
             FacebookPlugin.GetInstance().CheckLogin(this.addAction<bool>((logged) =>
@@ -80,14 +80,14 @@ public class AppodealPlugin : MonoBehaviour
         */
     }
 
-    public void ShowInterstital (DisposableAction completeAction)
+    public void ShowInterstitial (DisposableAction completeAction)
     {
         completeAction.Run();
 
         //[MIGRATION] TODO: NEWWER VERSION
         /*
         if (!NoAds)            
-            m_interstital.ShowInterstital(completeAction);
+            m_interstitial.ShowInterstitial(completeAction);
         */
 	}
 
@@ -113,7 +113,7 @@ public class AppodealPlugin : MonoBehaviour
         */
     }
 
-    public void CheckRewardVideo(DisposableAction m_loadeadVideo)
+    public void CheckRewardVideo(DisposableAction m_loadedVideo)
     {   
         //[MIGRATION] TODO: NEWWER VERSION
         /*
@@ -123,11 +123,11 @@ public class AppodealPlugin : MonoBehaviour
         if (m_rewardVideoEnabled)
         {            
             #if UNITY_EDITOR
-            m_loadeadVideo.Run();
+            m_loadedVideo.Run();
             #else
             if (Appodeal.isLoaded(Appodeal.REWARDED_VIDEO))
             {
-                m_loadeadVideo.Run();
+                m_loadedVideo.Run();
             }
             else
             {
@@ -249,19 +249,19 @@ public class AppodealPlugin : MonoBehaviour
         }        
     }
 
-    class Interstital : AppodealAds.Unity.Common.IInterstitialAdListener
+    class Interstitial : AppodealAds.Unity.Common.IInterstitialAdListener
     {
         DisposableAction m_actionCompleted;
 
-        public void ShowInterstital(DisposableAction action)
+        public void ShowInterstitial(DisposableAction action)
         {
             var dateString = SecureData.Get(SaveKeys.SK_LAST_INTERSTITAL_SHOWED, string.Empty);
 
-            var lastInterstital = DateTime.UtcNow;
+            var lastInterstitial = DateTime.UtcNow;
 
-            if (DateTime.TryParse(dateString, out lastInterstital))
+            if (DateTime.TryParse(dateString, out lastInterstitial))
             {
-                if ((DateTime.UtcNow - lastInterstital).TotalMinutes >= 2)
+                if ((DateTime.UtcNow - lastInterstitial).TotalMinutes >= 2)
                 {
                     #if UNITY_EDITOR
                     onInterstitialShown();

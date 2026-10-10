@@ -7,7 +7,7 @@ using System;
 public class TransitionEffect : MonoBehaviour 
 {
     static TransitionEffect s_instance;
-    public static TransitionEffect GeInstance()
+    public static TransitionEffect GetInstance()
     {
         return s_instance;
     }

@@ -51,17 +51,17 @@ public class AdsMiddleware : MonoBehaviour
         #endif
     }
 
-    public void CheckRewardVideo(DisposableAction loadeadVideo)
+    public void CheckRewardVideo(DisposableAction loadedVideo)
     {
         #if UNITY_IPHONE || UNITY_ANDROID
-        plugin.CheckRewardVideo(this.addAction(() => loadeadVideo.Run()));
+        plugin.CheckRewardVideo(this.addAction(() => loadedVideo.Run()));
         #endif
     }
 
-    public void ShowInterstital(DisposableAction completeAction)
+    public void ShowInterstitial(DisposableAction completeAction)
     {
         #if UNITY_IPHONE || UNITY_ANDROID
-        plugin.ShowInterstital(this.addAction(() => completeAction.Run()));
+        plugin.ShowInterstitial(this.addAction(() => completeAction.Run()));
         #endif
     }
 

@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
 {
 
 	#region STATICS
-    TransitionEffect m_transitionEffect { get { return TransitionEffect.GeInstance(); } }
+    TransitionEffect m_transitionEffect { get { return TransitionEffect.GetInstance(); } }
     #endregion
 
     [SerializeField]
@@ -55,7 +55,7 @@ public class Menu : MonoBehaviour
                 {
                     if (SecureData.Get(SaveKeys.SK_MENU_FROM_GAME, false))
                     {
-                        AppodealPlugin.GetInstance().ShowInterstital(this.addAction(() =>
+                        AppodealPlugin.GetInstance().ShowInterstitial(this.addAction(() =>
                                 {
                                 }));
                         SecureData.Save(SaveKeys.SK_MENU_FROM_GAME, false);
@@ -81,7 +81,7 @@ public class Menu : MonoBehaviour
 
     public void DismissAll()
     {
-        m_tutorial.Hidetutorial();
+        m_tutorial.HideTutorial();
         m_options.CloseOptions();
         m_leaderboardMode.HideLeaderboards();
         m_store.Dismiss();
@@ -142,10 +142,10 @@ public class Menu : MonoBehaviour
 
     public void GC()
     {
-        GoogleGamePlugin.GetInstance().Login((sucess) =>
+        GoogleGamePlugin.GetInstance().Login((success) =>
             {
 				#if UNITY_ANDROID
-                if(sucess)
+                if(success)
 				#endif
                     m_gc.Show();                
             });

@@ -95,8 +95,8 @@ public class CircleCollision : MonoBehaviour
 
             explode = CalculatePoints(spawnPoint, points);
 
-            lowCircle.UserPoweUp();
-            highCircle.UserPoweUp();			
+            lowCircle.UsePowerUp();
+            highCircle.UsePowerUp();			
         }
 
         if(highCircle.Points >= 18 || lowCircle.Points >= 18)

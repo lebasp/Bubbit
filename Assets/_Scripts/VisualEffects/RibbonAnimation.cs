@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class RibonAnimation : MonoBehaviour {
+public class RibbonAnimation : MonoBehaviour {
 
     [SerializeField]
     Color m_colorFlash = Color.white;

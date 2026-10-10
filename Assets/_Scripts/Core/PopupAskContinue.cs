@@ -37,6 +37,14 @@ public class PopupAskContinue : MonoBehaviour
 
     int m_times = 1;
 
+    // Each revive in the same match costs one more step of this price
+    public const int RevivePriceStep = 250;
+
+    public static int RevivePrice(int times)
+    {
+        return times * RevivePriceStep;
+    }
+
     public void ShowAskContinue(Action confirm, Action cancel, bool timed, int times)
     {
         m_askConfirmationGroup.SetActive(true);
@@ -48,7 +56,7 @@ public class PopupAskContinue : MonoBehaviour
         if (m_title != null)
             m_title.text = timed ? Localization.CurrentLanguage.GetString("EXTRA_TIME") : Localization.CurrentLanguage.GetString("REVIVE");
         if (m_description != null)
-            m_description.text = string.Format(Localization.CurrentLanguage.GetString("BUY_FOR"), m_times * 250);
+            m_description.text = string.Format(Localization.CurrentLanguage.GetString("BUY_FOR"), RevivePrice(m_times));
         if (m_icon != null)
             m_icon.sprite = timed ? m_timeSprite : m_continueSprite;
 
@@ -88,7 +96,7 @@ public class PopupAskContinue : MonoBehaviour
 
     public void Confirm()
     {
-        int price = (m_times * 250);
+        int price = RevivePrice(m_times);
 
         if (m_inventory.ItemBalance(Inventory.ID_COINS) >= price)
         {
@@ -101,6 +109,7 @@ public class PopupAskContinue : MonoBehaviour
         }
         else
         {
+            // Safety net: GameManager only offers a revive the player can afford
             Pause(true);
 
             PopupController.GetInstance().Show(Localization.CurrentLanguage.GetString("NOT_ENOUGH"), () => Pause(false));

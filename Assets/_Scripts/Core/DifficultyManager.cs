@@ -34,7 +34,7 @@ public class DifficultyManager : MonoBehaviour
     public int CurrentLevel{ get { return m_currentLevel; } }
 
     //temporary values
-    int m_milliecondsBetweenSpawns;
+    int m_millisecondsBetweenSpawns;
     int m_currentLevel;
 
     bool m_pause = false;
@@ -42,10 +42,10 @@ public class DifficultyManager : MonoBehaviour
     public delegate void OnLevelChanged(int level);
     public OnLevelChanged onLevelChanged;
 
-    public int MilliecondsBetweenSpawns
+    public int MillisecondsBetweenSpawns
     {
-        get { return m_milliecondsBetweenSpawns; }
-        private set { m_milliecondsBetweenSpawns = value; }
+        get { return m_millisecondsBetweenSpawns; }
+        private set { m_millisecondsBetweenSpawns = value; }
     }
 
     float m_chanceOfDeathCircle;
@@ -74,7 +74,7 @@ public class DifficultyManager : MonoBehaviour
 
     public void Begin()
     { 
-        MilliecondsBetweenSpawns = DefaultMillisecondsBetweenSpawns;
+        MillisecondsBetweenSpawns = DefaultMillisecondsBetweenSpawns;
         ChanceOfDeathCircle = DefaultChanceOfDeathCircle;
         OverallGameSpeed = DefaultOverallGameSpeed;
 
@@ -105,9 +105,9 @@ public class DifficultyManager : MonoBehaviour
 
                 if (timeNow >= nextLevelTime)
                 {
-                    MilliecondsBetweenSpawns -= SpawnMSPerTick;
-                    if (MilliecondsBetweenSpawns < MinMillisecondsBetweenSpawns)
-                        MilliecondsBetweenSpawns = MinMillisecondsBetweenSpawns;
+                    MillisecondsBetweenSpawns -= SpawnMSPerTick;
+                    if (MillisecondsBetweenSpawns < MinMillisecondsBetweenSpawns)
+                        MillisecondsBetweenSpawns = MinMillisecondsBetweenSpawns;
 
                     ChanceOfDeathCircle += DeathPerTick;
                     if (ChanceOfDeathCircle > MaxDeathCircleChance)

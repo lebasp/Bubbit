@@ -8,7 +8,7 @@ using com.shephertz.app42.paas.sdk.csharp.pushNotification;
 public class App42Plugin
 {
 
-    public int WOLRD_LIMIT = 10;
+    public int WORLD_LIMIT = 10;
     public int FRIENDS_LIMIT = 25;
 
     public static App42Plugin s_instance;
@@ -47,7 +47,7 @@ public class App42Plugin
 
         //[MIGRATION] TODO: NEWWER VERSION
         /*
-        m_scoreBoardService.GetTopNRankers(level, WOLRD_LIMIT, new App42DefaultCallBack<Game>(success, exception));   
+        m_scoreBoardService.GetTopNRankers(level, WORLD_LIMIT, new App42DefaultCallBack<Game>(success, exception));   
         */
 	}
 
