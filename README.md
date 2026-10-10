@@ -131,6 +131,7 @@ Assets/_Scripts
 - Switched off every dead third-party SDK (Appodeal, Facebook, OneSignal, App42, Google Play Games, Everyplay, NativeShare) behind its existing adapter. Each one is marked `//[MIGRATION] TODO`.
 - Blanked the hardcoded SDK keys in the scripts. This repository starts with fresh history.
 - Moved the `SecureData` passphrase out of the source code into a git-ignored config file. The passphrase visible in early commits was temporary and will be replaced in the published version.
+- Removed the remaining infrastructure details (old backend URLs, local keystore path). Public identifiers that ship inside every app build, such as the Facebook app ID, Google Play Games IDs and store/bundle IDs, stay in the repository on purpose: they are not secrets.
 
 **Next**
 - Typed item IDs (`enum`) and a data-driven cosmetics catalog (`ScriptableObject`) to replace string IDs and `if` chains.
