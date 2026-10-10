@@ -9,8 +9,10 @@ public class SecureData
 {
 
 	static int Iterations = 1000;
+
 	// Obfuscation only: keeps casual players from editing PlayerPrefs, not a real secret.
-	static string hash = "1olI6KZ3WHIeLPa92YPAfXB6";
+	// The passphrase lives in an untracked config file (see SecureDataConfig).
+	static string hash { get { return SecureDataConfig.Passphrase; } }
 
 	public static string DoEncrypt(string plainText, string hash)
 	{

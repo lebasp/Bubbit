@@ -56,3 +56,7 @@ Thumbs.db
 
 # Source art and signing material (kept locally only)
 /Extras/
+
+# Local SecureData passphrase (template: Config/SecureDataConfig.example.json)
+/Assets/Resources/SecureDataConfig.json
+/Assets/Resources/SecureDataConfig.json.meta
