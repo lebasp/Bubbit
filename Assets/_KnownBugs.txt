@@ -1,0 +1,19 @@
+missing features for release
+	- pause screen
+	- iap product to buy no ads
+
+features to be checked for release
+	- leaderboards score being added correctly
+	- banner on menu
+	- ads appearing after a game is played
+
+next update (nice to have)
+	- maybe change the blackhole to suck it all and destroy after it sucks
+	- timer countdown should have a red growing animation when it reaches less than 10 seconds
+	- blackhole sound
+	- death bubble sound
+	- game over sound
+	- add other musics?
+	- bubbles exploding animations?
+	- new purchasable skins for the game?
+	- challenge mode: make your score then challenge a friend to beat you

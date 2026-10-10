@@ -1,0 +1,10 @@
+lastUpgrade=00932
+proj.pluginVersion=0.9.32
+proj.AppId=
+and.BundleId=com.seraphic.bubbler
+proj.classDir=Assets
+proj.ConstantsClassName=GooglePlayIds
+and.ResourceData=
+and.ClientId=
+proj.requireGPlus=false
+android.SetupDone=true

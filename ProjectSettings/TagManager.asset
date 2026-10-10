@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - circle
+  - death
+  - life
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Gameplay
+  - Background
+  - SimpleCircle
+  - SimpleCircleKiller
+  - transtiction
+  - popup
+  - screenshot
+  - store
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3969204781
+    locked: 1
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: OverBubbles
+    uniqueID: 1531846643
+    locked: 0
+  - name: UI
+    uniqueID: 3942316895
+    locked: 0
+  - name: screenshot
+    uniqueID: 87078451
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  m_MigratedRenderPipelines: []
